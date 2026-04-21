@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    // A simple div element to show the text content
+    <div id="myDiv"> 
+        Hello, World!
+    </div>
+    <div id="but"><button>Click me!</button></div>
+</body>
+<script>
+    // Accessing the DOM element
+    const myDiv = document.getElementById('myDiv');
+    console.log(myDiv.textContent); // Output: Hello, World!
+
+    // Creating a new DOM element
+    const newParagraph = document.createElement('p');
+    newParagraph.textContent = 'This is a new paragraph.';
+    document.body.appendChild(newParagraph);
+
+    const button1 = document.getElementById('but');
+    button1.addEventListener('click', changeText);
+    function changeText(){
+        button1.textContent = 'Button is  Removed!';
+        alert('Button Clicked!');
+    }
+</script>
+</html>
