@@ -6,13 +6,10 @@ import FavoriteColor from "./components/button";
 import Form from "./pages/signup";
 import Leaderboard from "./pages/leaderboard";
 import ListGroup from "./pages/ListGroup";
-import User from "./components/user"
-
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
-      <User/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

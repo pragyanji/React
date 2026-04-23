@@ -141,7 +141,6 @@ function Home() {
             <Link to="/listgroup" style={{ color: "inherit", textDecoration: "none" }}>
               List Group
             </Link>
-            {/* onClick = {()=> <Link to="/listgroup" style={{ color: "inherit", textDecoration: "none" }}>List Group</Link>} */}
           </button>
         </div>
       </section>

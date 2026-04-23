@@ -12,7 +12,7 @@ function ListGroup() {
         <h1>List of Cities</h1>
         {cities.length === 0 && <p>no any cities</p>}
         <ul className="list-group">
-            {cities.map((city,index) => <li key={index} onClick={()=>setSelectedIndex(index)} className={selectedIndex === index ? "list-group-item active" : 'list-group-item'}>{city}</li>)}
+            {cities.map((city,index) => <li cursor-pointer key={index} onClick={()=>setSelectedIndex(index)} className={selectedIndex === index ? "list-group-item active" : 'list-group-item'}>{city}</li>)}
         </ul>
         </>
     );

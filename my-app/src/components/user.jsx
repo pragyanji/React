@@ -9,7 +9,7 @@ function User (){
         <>
         <UserContext.Provider value={{name:"Pragyan",age : 24}}>    
         <div>
-            <h1>Current User is :</h1>
+            <h1>Welcome Back:</h1>
         </div>
         <ShowUser/>
         </UserContext.Provider>
