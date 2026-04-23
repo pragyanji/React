@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import ShowUser from "./showUser";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const UserContext = createContext();
 function User (){

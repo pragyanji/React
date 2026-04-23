@@ -12,9 +12,9 @@ function FavoriteColor() {
       <User/>
       <Weather />
       <h1>My name is {name}</h1>
-      <button className="btn btn-outline-info" onClick={() => setName("pragyan")}>pragyan</button>
-      <button className="btn btn-outline-info" onClick={() => setName("arav")}>arav</button>
-      <button className="btn btn-outline-info" onClick={() => setName("kritishma")}>kritishma</button>
+      <button className="btn btn-outline-info" class="btn btn-primary me-2" onClick={() => setName("pragyan")}>pragyan</button>
+      <button className="btn btn-outline-info" class="btn btn-primary me-2" onClick={() => setName("arav")}>arav</button>
+      <button className="btn btn-outline-info" class="btn btn-primary me-2" onClick={() => setName("kritishma")}>kritishma</button>
     </div>
   );
 }
