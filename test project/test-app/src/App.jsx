@@ -3,7 +3,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/home"
 import {Router, Routes, Route} from "react-router-dom";
 import { BrowserRouter } from 'react-router-dom';
-import CrudeOperations from "./pages/CrudeOperations";
+import CrudeOperations from "./pages/CrudOperations";
 import "./App.css";
 function App() {
   return (

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import "../css/CrudOperations.css";
+import Form from "../components/Form";
 
-function CrudeOperations() {
+function CrudOperations() {
   const [name, setname] = useState("");
   const [age, setage] = useState("");
   const [userdata, setuserdata] = useState([]);
@@ -95,61 +97,57 @@ function CrudeOperations() {
   }
 
   return (
-    <div>
-      <h1>Crude Operations</h1>
+    <div className="crud-container">
+      <h1 className="crud-title">CRUD Operations</h1>
 
       {/* Show form for both Create and Update */}
       {formmode && (
-        <div className="user-form">
-          <h3>{formmode === "create" ? "Create User" : "Update User"}</h3>
-          <form>
-            <label>Enter your name:</label>
-            <input
-              type="text"
-              placeholder="name"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
-            />
-            <label>Enter your age:</label>
-            <input
-              type="number"
-              placeholder="age"
-              value={age}
-              onChange={(e) => setage(e.target.value)}
-            />
-            <button
-              type="submit"
-              onClick={formmode === "create" ? handleCreate : handleUpdate}
-            >
-              {formmode === "create" ? "Create" : "Update"}
-            </button>
-            <button type="button" onClick={closeForm}>
-              Cancel
-            </button>
-          </form>
-        </div>
+        <Form
+          title={formmode === "create" ? "Create User" : "Update User"}
+          name={name}
+          setname={setname}
+          age={age}
+          setage={setage}
+          onSubmit={formmode === "create" ? handleCreate : handleUpdate}
+          onCancel={closeForm}
+          submitLabel={formmode === "create" ? "Create" : "Update"}
+        />
       )}
 
-      <button type="button" onClick={openCreateForm}>
-        Create User
-      </button>
-
-      <div className="read-user-details">
-        <button type="button" onClick={handleRead}>
-          Show user details
+      <div className="crud-actions">
+        <button type="button" className="btn btn-create" onClick={openCreateForm}>
+          + Create User
         </button>
+        <button type="button" className="btn btn-read" onClick={handleRead}>
+          Show Users
+        </button>
+      </div>
+
+      <div className="user-list">
+        {userdata.length > 0 && <h3 className="list-title">Users</h3>}
         <ul>
           {userdata.map((user) => (
-            <li key={user.id}>
-              <p>
-                name = {user.name} age = {user.age}
-              </p>
-              <button type="button" onClick={(e) => handleDelete(e, user.id)}>
-                Delete
-              </button>
-              <button type="button" onClick={() => openUpdateForm(user)}>
-                Update
-              </button>
+            <li key={user.id} className="user-card">
+              <div className="user-info">
+                <span className="user-name">{user.name}</span>
+                <span className="user-age">Age: {user.age}</span>
+              </div>
+              <div className="user-actions">
+                <button
+                  type="button"
+                  className="btn btn-edit"
+                  onClick={() => openUpdateForm(user)}
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-delete"
+                  onClick={(e) => handleDelete(e, user.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -158,4 +156,4 @@ function CrudeOperations() {
   );
 }
 
-export default CrudeOperations;
+export default CrudOperations;
