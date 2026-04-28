@@ -1,6 +1,9 @@
 import { useState } from "react";
 import "../css/CrudOperations.css";
 import Form from "../components/Form";
+import axios from "axios";
+
+const API_URL = "http://127.0.0.1:8000/api/user";
 
 function CrudOperations() {
   const [name, setname] = useState("");
@@ -32,15 +35,8 @@ function CrudOperations() {
 
   function handleCreate(e) {
     e.preventDefault();
-    fetch(`http://127.0.0.1:8000/api/user/create/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: name, age: age }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
+    axios.post(`${API_URL}/create/`, { name, age })
+      .then(() => {
         closeForm();
         handleRead();
       })
@@ -51,15 +47,8 @@ function CrudOperations() {
 
   function handleUpdate(e) {
     e.preventDefault();
-    fetch(`http://127.0.0.1:8000/api/user/update/${editingId}/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name: name, age: age }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
+    axios.put(`${API_URL}/update/${editingId}/`, { name, age })
+      .then(() => {
         closeForm();
         handleRead();
       })
@@ -69,13 +58,9 @@ function CrudOperations() {
   }
 
   function handleRead() {
-    fetch("http://127.0.0.1:8000/api/user/details/")
+    axios.get(`${API_URL}/details/`)
       .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
-        return response.json();
-      })
-      .then((data) => {
-        setuserdata(data);
+        setuserdata(response.data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
@@ -84,11 +69,8 @@ function CrudOperations() {
 
   function handleDelete(e, user_id) {
     e.preventDefault();
-    fetch(`http://127.0.0.1:8000/api/user/delete/${user_id}/`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error("Network response was not ok");
+    axios.delete(`${API_URL}/delete/${user_id}/`)
+      .then(() => {
         handleRead();
       })
       .catch((error) => {
