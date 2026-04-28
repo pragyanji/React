@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import "../css/StudentsDetails.css";
 
 function StudentsDetails() {
     const [student, setStudent] = useState(null);
@@ -20,78 +21,76 @@ function StudentsDetails() {
 
     return (
         <div>
-            <div>
-                <search>
-                    <form onSubmit={(e) => { fetchStudentDetails(e);}}>
+            <div className="student-search-container">
+                <form onSubmit={(e) => { fetchStudentDetails(e);}}>
                     <input type="text" value={studentId} onChange={(e) => setStudentId(e.target.value)} placeholder="Search by name or ID" />
                     <button type="submit">Search</button>
-                    </form>
-                </search>
+                </form>
             </div>
-            <div style={{ marginTop: "30px" }}>
+            <div className="student-details-container">
                 <h1>Student Details</h1>
                 {student && (
-                    <table style={{ width: "100%", borderCollapse: "collapse", border: "1px solid #ccc" }}>
+                    <table className="student-details-table">
                         <tbody>
-                            <tr style={{ backgroundColor: "#f9f9f9" }}>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Name</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.name}</td>
+                            <tr>
+                                <td>Name</td>
+                                <td>{student.name}</td>
                             </tr>
                             <tr>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Age</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.age}</td>
-                            </tr>
-                            <tr style={{ backgroundColor: "#f9f9f9" }}>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Student ID</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.stu_id}</td>
+                                <td>Age</td>
+                                <td>{student.age}</td>
                             </tr>
                             <tr>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Contact</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.contact}</td>
-                            </tr>
-                            <tr style={{ backgroundColor: "#f9f9f9" }}>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Email</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.email}</td>
+                                <td>Student ID</td>
+                                <td>{student.stu_id}</td>
                             </tr>
                             <tr>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Parents' Name</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.parents_name}</td>
-                            </tr>
-                            <tr style={{ backgroundColor: "#f9f9f9" }}>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Batch</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.batch}</td>
+                                <td>Contact</td>
+                                <td>{student.contact}</td>
                             </tr>
                             <tr>
-                                <td style={{ border: "1px solid #ccc", padding: "10px", fontWeight: "bold" }}>Faculty</td>
-                                <td style={{ border: "1px solid #ccc", padding: "10px" }}>{student.faculty}</td>
+                                <td>Email</td>
+                                <td>{student.email}</td>
+                            </tr>
+                            <tr>
+                                <td>Parents' Name</td>
+                                <td>{student.parents_name}</td>
+                            </tr>
+                            <tr>
+                                <td>Batch</td>
+                                <td>{student.batch}</td>
+                            </tr>
+                            <tr>
+                                <td>Faculty</td>
+                                <td>{student.faculty}</td>
                             </tr>
                         </tbody>
                     </table>
                 )}
             </div>
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}>
+            <div className="fee-details-header">
                 <h1>Student Fee Details</h1>
             </div>
             {student && student.fees && student.fees.length > 0 ? (
-                <div style={{ padding: "20px" }}>
-                    <table style={{ width: "100%", borderCollapse: "collapse", border: "1px solid #ccc" }}>
+                <div className="fee-details-container">
+                    <table className="fee-details-table">
                         <thead>
-                            <tr style={{ backgroundColor: "#f0f0f0" }}>
-                                <th style={{ border: "1px solid #ccc", padding: "10px" }}>Semester</th>
-                                <th style={{ border: "1px solid #ccc", padding: "10px" }}>Fee Amount</th>
-                                <th style={{ border: "1px solid #ccc", padding: "10px" }}>Paid Amount</th>
-                                <th style={{ border: "1px solid #ccc", padding: "10px" }}>Due Amount</th>
-                                <th style={{ border: "1px solid #ccc", padding: "10px" }}>Payment Date</th>
+                            <tr>
+                                <th>Semester</th>
+                                <th>Fee Amount</th>
+                                <th>Paid Amount</th>
+                                <th>Due Amount</th>
+                                <th>Payment Date</th>
                             </tr>
                         </thead>
                         <tbody>
                             {student.fees.map((fee, index) => (
                                 <tr key={index}>
-                                    <td style={{ border: "1px solid #ccc", padding: "10px" }}>{fee.semester}</td>
-                                    <td style={{ border: "1px solid #ccc", padding: "10px" }}>Rs. {fee.fee_amount}</td>
-                                    <td style={{ border: "1px solid #ccc", padding: "10px" }}>Rs. {fee.payed_amount}</td>
-                                    <td style={{ border: "1px solid #ccc", padding: "10px" }}>Rs. {fee.due_amount}</td>
-                                    <td style={{ border: "1px solid #ccc", padding: "10px" }}>{fee.pay_date}</td>
+                                    <td>{fee.semester}</td>
+                                    <td>Rs. {fee.fee_amount}</td>
+                                    <td>Rs. {fee.payed_amount}</td>
+                                    <td>Rs. {fee.due_amount}</td>
+                                    <td>{fee.pay_date}</td>
                                 </tr>
                             ))}
                         </tbody>
